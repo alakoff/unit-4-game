@@ -53,4 +53,16 @@ body {
 }
 #c1,#c2,#c3,#c4 {
     margin-right: 20px;
+    border-radius: 15px 15px 15px 15px;
+}
+.messages {
+    float:left;
+    margin-left:20px;
+    height: 100px;
+    width: 300px;
+    color:white;
+    /* border:5px solid blue; */
+}
+.sound {
+    display:none;
 }
