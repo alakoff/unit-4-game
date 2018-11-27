@@ -31,6 +31,9 @@ var game = {
     playSound: function() {
         $(".sound").trigger("load");
         $(".sound").trigger("play");
+        $(".text-center,.text-left").hide();
+        $(".jumbopic").css("background-image","url('./assets/images/jumbo.jpg')");
+
     },
 
 
@@ -48,6 +51,10 @@ var game = {
             $(".sound").trigger('pause');
             //set play time to 0
             $(".sound").prop("currentTime",0);
+
+            //Reset jumbotron background and show jumbotron text
+            $(".jumbopic").css("background-image","none");
+            $(".text-center,.text-left").show();
 
             //Clear game messages
             $(".messages").text("");
@@ -67,7 +74,7 @@ var game = {
                 game.losses += 1;
                 $(".losses").text("Losses: "+game.losses);
                 $(".WonLossTotal").css("border-color", "red");
-                $(".messages").text("Your score exceeded the game number.")
+                $(".messages").text("Your score exceeded the game number. Click on a crystal to play again.")
 
                 //Play sound
                 // game.playSound();
@@ -84,7 +91,7 @@ var game = {
                 game.wins += 1;
                 $(".wins").text("Wins: "+game.wins);
                 $(".WonLossTotal").css("border-color", "green");
-                $(".messages").text("Your score matched the game number.");
+                $(".messages").text("Your score matched the game number. Click on a crystal to play again.");
 
                 //Play sound
                 game.playSound();
