@@ -24,24 +24,47 @@ var game = {
         for (let i=1; i<5; i++) {
             $("#c"+i).val(Math.floor(Math.random()*(this.crystalMax-this.crystalMin+1)+this.crystalMin));
         };
-
     },
+
 
     //Plays the game music
     playSound: function() {
         $(".sound").trigger("load");
         $(".sound").trigger("play");
-        $(".text-center,.text-left").hide();
-        $(".jumbopic").css("background-image","url('./assets/images/jumbo.jpg')");
+        //Hide moving crystal
+    },
 
+
+    //Move Crystal after winning
+    moveCrystal: function() {
+        $(".movingCrystal").css("display","block");
+        $(".movingCrystal").animate({
+            "marginLeft":"+=900px",
+            "animation-duration": "100s"
+        });
+        $(".movingCrystal").animate({
+            "marginTop":"-=300px",
+            "animation-duration": "100s"
+        });
+        $(".movingCrystal").animate({
+            "marginLeft":"-=900px",
+            "animation-duration": "100s"
+        });
+        $(".movingCrystal").animate({
+            "marginTop":"+=300px",
+            "animation-duration": "100s"
+        });
+        $(".movingCrystal").append("<img src='assets/images/moving.jpg' height='75' width='75'>");
     },
 
 
     //Main game play function
     playGame: function() {
 
+        //Reset game number and game score
         game.gameNum();
 
+        //Reset crystal values
         game.crystalVal();
 
         //On click function
@@ -49,12 +72,9 @@ var game = {
 
             //pause sound playing
             $(".sound").trigger('pause');
+
             //set play time to 0
             $(".sound").prop("currentTime",0);
-
-            //Reset jumbotron background and show jumbotron text
-            $(".jumbopic").css("background-image","none");
-            $(".text-center,.text-left").show();
 
             //Clear game messages
             $(".messages").text("");
@@ -92,6 +112,9 @@ var game = {
                 $(".wins").text("Wins: "+game.wins);
                 $(".WonLossTotal").css("border-color", "green");
                 $(".messages").text("Your score matched the game number. Click on a crystal to play again.");
+
+                //Animate crystal
+                game.moveCrystal();
 
                 //Play sound
                 game.playSound();
