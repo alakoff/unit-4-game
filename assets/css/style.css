@@ -44,7 +44,7 @@ body {
 }
 
 .gameNbr,.gameScr {
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
 }
 .wins,.losses {
@@ -68,4 +68,6 @@ body {
 }
 .movingCrystal {
     margin-top:10px;
+    margin-bottom:10px;
+    height:20px;
 }
